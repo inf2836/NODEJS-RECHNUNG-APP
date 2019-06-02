@@ -1,0 +1,32 @@
+{
+  "name": "rechnungs-app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "test": "jest",
+    "test-coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "^4.16.4",
+    "express-generator": "^4.16.0",
+    "express-session": "^1.15.6",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9",
+    "serve-favicon": "^2.2.0",
+    "should": "~2.1.0",
+    "sqlite": "^3.0.0"
+  },
+  "main": "app.js",
+  "author": "Monique Fomen Arsene",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "jest": "^24.1.0"
+  }
+}

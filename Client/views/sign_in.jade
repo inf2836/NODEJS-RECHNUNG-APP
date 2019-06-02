@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  #login-page.content.col-md-8.m-auto.text-light.alert-secondary.text-secondary.border.border-warning
+    .login.h2.nav-link.mt-4.text-center.text-primary Login to your Account 
+    .text-center.my-2
+      img.rounded(src='images.png', id = "profile-img")
+    
+    .p-4.m-auto(style='max-width:600px')
+      form.form(method="POST" onsubmit="submitSignInForm(event)")
+        #login-alert-alert.alert.alert-danger.m-0(role='alert' hidden) Username or password incorrect
+        .form-group
+          input.text-center.form-control.p-2.border-primary(type="text" name="username" placeholder="Username" required )
+        .form-group
+          input.text-center.form-control.p-2.border-primary(type="password" name="password" placeholder="Password" required )
+        .form-group.mt-0
+          input.btn.btn-lg.btn-primary.btn-block(type="submit", value="sign in")
+        a.mb-2(href="/sign_up") have no account? create one

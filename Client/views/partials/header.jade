@@ -1,0 +1,21 @@
+nav.navbar.navbar-expand-lg.navbar.text-warning.bg-light.my-2.m-4.col-md-8.navbar.border.border-primary
+  a.h2.navbar-brand.text-warning(href='/') Your RechnungsApp
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#NavHeader', aria-controls='NavHeader', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #NavHeader.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      if(User && User.username =='Monique')
+        li.nav-item
+          a.nav-link(href='/admin') Admin
+      li.nav-item
+        a.nav-link(href='/transactions') Transactions 
+      if(Users && User)
+        li.nav-item
+          a.nav-link(data-toggle='modal', data-target='#add-purchase' href="#") Add a new purchase
+      if(User)
+        li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') #{User.username}
+            .dropdown-menu(aria-labelledby='navbarDropdown')
+                button.dropdown-item.text-warning(data-toggle='modal', data-target='#add-purchase') Add a new purchase
+                .dropdown-divider
+                a.dropdown-item.text-warning(href='/sign_out') Sign out

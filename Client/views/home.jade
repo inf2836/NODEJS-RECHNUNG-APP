@@ -1,0 +1,76 @@
+
+extends layout
+block content
+  .text-secondary.col-md-8.m-auto.p-0
+    .table-container.mt-2
+      h3.h3.text-dark.m-4 Your operations #{User.username}
+      each transaction in Transactions
+        .wrapper.row.mx-auto.mb-1('data-transaction-id'="#{transaction._id}").bg-white
+          .col.border.p-2
+            h5.name.text-dark #{transaction.receiver}
+          .col.border.p-2
+            if(transaction.amount >= 0 )
+              .text-success.amount.amount-value #{transaction.amount} €
+            else
+              .text-danger.amount.amount-value #{transaction.amount} €
+          .col.border.p-2
+              button.btn.btn-outline-success(type='button', data-toggle='modal', data-target='#payout' onclick="setReceiver('#{transaction.receiver}')") Payout Money      
+
+    
+    #add-purchase.modal.fade(tabindex='-1', role='dialog',  aria-hidden='true')
+      .modal-dialog.modal-dialog-centered.modal-lg.modal-sm-12(role='document')
+          .modal-content
+            form#payment-form.form( method="POST" onsubmit="submitTransactionForm(event)")
+              .modal-header
+                  h4.h4.modal-title.text-dark Share a new invoice
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+              .modal-body
+                .wrapper
+                  input.form-control.m-1(name="creator" value=User.username type="hidden")  
+                  .form-row
+                    input.form-control.m-1(name="title"  placeholder="Title" title="Enter the name of your purchase" value="Name of your Purschase" required)  
+                  .form-row
+                    input.form-control.m-1(name="date" placeholder="Payment date"  type="date" title="Pick the date of your purchase")  
+                  .form-row
+                    textarea.form-control.m-1(name="description", rows="5" placeholder="Description" title="Title of the Artikel")
+                  .form-row
+                    input.form-control.m-1(name="amount"  type="number" placeholder="Total (€)" title="" value="40" required)      
+                  .form-group
+                    h5.h5.text-dark.m-1 Select the people that will also pay these purchases
+                    ul.list-group 
+                      each user in Users
+                        if(user.username != User.username)
+                          li.list-group-item
+                            .container
+                              input.form-check-input.py-2(type="checkbox" value=user.username)
+                              label.label.h5.form-check-label.py-1 #{user.username}
+              .modal-footer
+                input.btn.btn-warning(type='cancel', data-dismiss='modal' value="Cancel") 
+                input.btn.btn-success(form='payment-form' type='submit' value='submit')
+    
+    
+    #payout.modal.fade(tabindex='-1', role='dialog',aria-hidden='true')
+      .modal-dialog.modal-dialog-centered.modal-lg(role='document')
+        .modal-content
+          form#payout-form.form(onsubmit="submitPayoutForm(event)")
+            input(name="creator" value=User.username type="hidden")
+            input(name="date" type="hidden")
+            input(name="receiver" type="hidden")
+            .modal-header
+              h4#payout-header.h4.modal-title 
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') &times;
+            .modal-body
+              .wrapper
+                .form-group
+                  input.form-control(type="text" placeholder="Title" name="title" title="name der Artikel" value="Test Value" required)  
+                .form-group
+                  textarea.form-control(name="description", rows="5" placeholder="Description")
+                .form-group 
+                  input.form-control.m-1(name="date" placeholder="Payment date"  type="date" title="Pick the date of your purchase")  
+                .form-group
+                  input#payoutAmount.m-1.form-control(type="number"  placeholder="Amount (€)" name="amount" title="total Due" value="10" required)     
+            .modal-footer
+              button.btn.btn-warning(type='button', data-dismiss='modal') cancel        
+              input.btn.btn-success(form="payout-form" type='submit' value="submit")    

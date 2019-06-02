@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  .content.col-md-8.m-auto.mt-3
+    .alert-info.p-3.mt-3
+      label.label Amounts that are 
+        b.text-success  'green' 
+        | in color represent amounts that others will pay to you. 
+        | Those that are 
+        b.text-danger red 
+        | in color represent amounts that you will pay to others.
+    table.table.table-secondary
+      thead
+        tr
+          th(scope='col' width="10%") From
+          th(scope='col' width="10%") To
+          th(scope='col' width="10%") Amount
+          th(scope='col' width="") Details
+      tbody
+        each transaction in transactions
+          tr('data-id'="#{transaction._id}")
+            td.td 
+              .text-secondary #{transaction.creator}       
+            td.td
+              .text-secondary #{transaction.receiver} 
+            td.td 
+              if( transaction.creator === User.username)
+                .text-success #{transaction.amount} €
+              else
+                .text-danger #{transaction.amount} €
+            td.td
+              .text-secondary #{transaction.date}, #{transaction.detail}

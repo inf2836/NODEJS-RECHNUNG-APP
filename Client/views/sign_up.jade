@@ -1,0 +1,34 @@
+extends layout
+
+block content
+   #singnup.m-auto.col-md-8.text-secondary.alert-secondary
+      form.form.p-2(onsubmit="submitRegistrationForm(event)")
+         .m-auto.p-3(style='max-width:600px')
+            h4.h4.text-center.text-primary Create an account
+            .status.alert.alert-danger(hidden) Unable to create Account, please check username and password
+            .form-group
+               label.label(for="registrationFirstname") Enter your Name please*
+               input#registrationFirstname.form-control(type="text" name="firstname" required)
+            .form-group
+               label.label(for="registrationLastname") Enter your Lastname please*
+               input#registrationLastname.form-control(type="text" name="lastname" required)
+            .form-group
+               label.label(for="registrationUsername") Please set your Username*
+               input#registrationUsername.form-control(type="text" name="username" required)
+            .form-group
+               label.label(for="registrationEmail") Enter your Email address*
+               input#registrationEmail.form-control(type="email" name="email" required)
+            .form-group
+               label.label(for="registrationEmail") Enter phone number
+               input.form-control(type="phone" name="phone")
+            .form-group
+               label.label(for="registratioPassword") your Password*
+               input#registratioPassword.md-2.form-control(type="password" name="password" required)
+            .form-group
+               label.label(for="registratioPassword2") Confirm your Password 
+               input#passwordConfirmation.form-control(type="password" required)
+               .password.alert.alert-danger(hidden) Passwords do not match
+            .form-group
+               input.mb-2.btn.btn-primary.col-12(type="submit" value="Sign up") 
+            a.mb-2(href="/sign_in") already have an account? back to login
+               

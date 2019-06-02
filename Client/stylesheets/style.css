@@ -1,0 +1,46 @@
+html,body {
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* background-image: url(/bild.jpg);  */
+  margin: auto;
+  min-height: 100%;
+}
+.content{
+  padding: 0 !important;
+}
+#login-page,
+#singnup{
+  color: #210d0d;
+  margin-top: 10%;
+  width:70%;
+  background: linear-gradient(to bottom, #54ccba 0%, #a399ff 100%); 
+}
+
+h{
+  text-align: center;
+
+}
+
+#header li{
+  margin-right: 1rem;
+ 
+}
+
+
+#main-header{
+  width: 70%;
+  /* margin:auto; */
+}
+
+
+/* img{
+  position: absolute;
+  margin-top: 5px;
+} */
+
+#login-page img{
+  height: 20rem;
+}
+
+form input.form-control{
+  padding: 0.5rem;
+}

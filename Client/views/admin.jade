@@ -1,0 +1,31 @@
+extends layout
+block content
+  .content.col-md-8.m-auto.p-0
+    table.table.table-bordered
+      thead
+        tr
+          th(scope='col' width="80%")
+          th(scope='col' width="10%")
+      tbody
+        each user in Users
+          tr('data-user-id'="#{user._id}")
+            td.td 
+              h5.text-dark #{user.username}       
+            td.td
+              button.btn.btn-danger(type='button',data-toggle='modal', data-target='#delete-someone'  onclick="markUserToBeDeleted('#{user._id}')") remove
+      
+  #delete-someone.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-dialog.modal-dialog-centered.modal-lg(role='document')
+        .modal-content
+          .modal-header
+            h4.h4.modal-title.text-warning Do you really want to remove this User ??
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          .modal-body
+            form#user-deletion-form
+              input#user-id-to-be-deleted(type="hidden" name="_id")  
+              input(type="hidden" name="username" value=User.username)  
+              input.form-control(type="password",name="password" placeholder="Enter your password here in order to confirm the deletion" required)  
+          .modal-footer
+              button.btn.btn-warning(type='button', data-dismiss='modal') Cancel
+              input.btn.btn-danger(type='submit' form='user-deletion-for' value="Confirm and delete")
